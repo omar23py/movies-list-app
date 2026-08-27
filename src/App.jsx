@@ -1,4 +1,5 @@
 import {useState, useEffect} from "react";
+import {useDebounce} from 'react-use'
 import Search from "../components/Search.jsx";
 import Card from "../components/Card.jsx";
 import './index.css';
@@ -6,6 +7,7 @@ import './index.css';
 export default function App() {
     const [searchTerm, setSearchTerm] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
+    const[debouncedSearchTerm, setDebouncedSearchTerm] = useState('');
     const [moveList, setMoveList] = useState([]);
 
     const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
@@ -17,6 +19,7 @@ export default function App() {
             Authorization: `Bearer ${API_KEY}`,
         },
     };
+    useDebounce(()=>setDebouncedSearchTerm(searchTerm),500,[searchTerm]);
 
     async function fetchMovies(query = '') {
         try {
@@ -45,8 +48,8 @@ export default function App() {
     }
 
     useEffect(() => {
-        fetchMovies(searchTerm);
-    }, [searchTerm]);
+        fetchMovies(debouncedSearchTerm);
+    }, [debouncedSearchTerm]);
 
     return (
         <main>
@@ -63,6 +66,7 @@ export default function App() {
                     </div>
                 </header>
                 <section className='Popular-movies'>
+                    <h2 className='font-extrabold text-white text-2xl sm:text-4xl mb-5'>Popular</h2>
                     <ul>
                         {moveList.map(movie => (
                             <li key={movie.id}>
