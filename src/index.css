@@ -8,48 +8,105 @@
     --color-light-100: #cecefb;
     --color-light-200: #a8b5db;
     --color-gray-100: #9ca4ab;
-    --color-dark-100: #0f0d23;
+    --color-dark-100: #16132e;
     --background-image-hero: url("../public/hero-bg.png");
 }
 
 
 @layer base {
+    main {
+        @apply min-h-screen relative bg-primary;
+    }
     body {
         font-family: DM Sans, sans-serif;
         background: #030014;
     }
+
     h1 {
         @apply mx-auto max-w-4xl text-center text-5xl font-bold leading-tight tracking-[-1%] text-white
         sm:text-[64px] sm:text-[32px];
     }
-    header img{
-        @apply w-full max-w-lg h-auto  mx-auto drop-shadow-md;
+
+    header img {
+        @apply w-full max-w-lg h-auto mx-auto ;
     }
 }
+
 @layer components {
+    .pattern {
+        @apply bg-hero w-full h-screen bg-center bg-cover absolute z-0;
+    }
+
+    .wrapper {
+        @apply px-5 py-12 sm:px-10 max-w-7xl mx-auto flex flex-col relative z-10;
+    }
+
     .header-container {
-        @apply flex justify-center items-center bg-hero bg-center bg-cover ;
-    }
-    .header-content-container{
-        @apply flex-col justify-center items-center text-center mt-10 ;
+        @apply flex justify-center items-center;
     }
 
-   .search{
-       @apply w-full bg-light-100/5 px-4 py-3 rounded-lg mt-10 max-w-xl mx-auto ;
+    .header-content-container {
+        @apply flex-col justify-center items-center text-center mt-10;
+    }
 
-       & div{
-           @apply relative flex items-center;
-       }
-        & img{
+    .search {
+        @apply w-full bg-light-100/5 px-4 py-3 rounded-lg mt-10 max-w-xl mx-auto;
+
+        & div {
+            @apply relative flex items-center;
+        }
+
+        & img {
             @apply absolute left-2 h-5 w-5;
         }
-       & input{
-           @apply w-full py-2 pl-10 placeholder-light-200 text-white outline-hidden;
-       }
 
-   }
+        & input {
+            @apply w-full py-2 pl-10 placeholder-light-200 text-white outline-hidden;
+        }
+    }
 
+    .Popular-movies {
+        @apply  mt-5  sm:mt-10;
+        & ul {
+            @apply grid grid-cols-1 gap-5 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 list-none p-0 m-0;
+        }
+    }
 
+    .card {
+        @apply bg-dark-100 rounded-2xl  transition-transform duration-200 hover:scale-[1.02];
+
+        & img {
+            @apply   rounded-2xl  w-full   object-contain  ;
+        }
+
+        & h3 {
+            @apply text-white font-bold text-center ;
+        }
+
+        & p {
+            @apply text-gray-100 font-medium text-sm;
+        }
+
+        & .content {
+            @apply mt-2 flex flex-row flex-wrap items-center gap-1;
+        }
+
+        & .content span {
+            @apply text-sm text-gray-100 font-bold;
+        }
+
+        & .rating {
+            @apply flex flex-row items-center gap-1;
+        }
+
+        & .rating img {
+            @apply size-5 object-contain;
+        }
+
+        & .rating p {
+            @apply text-white;
+        }
+    }
 }
 
 
