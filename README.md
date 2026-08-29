@@ -1,144 +1,125 @@
 # 🎬 Movies List App
 
-A modern React-based movie discovery app that allows users to browse, search, and explore movie information with a clean, responsive UI.
+A React movie discovery app built to practice core React concepts — state management, side effects, API integration, and translating a design into a working UI.
 
 ---
 
 ## 📌 Overview
 
-**Movies List App** is a front-end project built with **React** and **JavaScript**, styled with **CSS**, and structured with **HTML**.  
-It focuses on creating a smooth and user-friendly movie browsing experience, including:
-
-- Searching for movies
-- Displaying movie cards with key information
-- Responsive layout for desktop and mobile
-- Clean UI inspired by a Figma design
-
-This project is ideal for practicing React fundamentals, component structure, state handling, API integration patterns, and UI implementation from design files.
+Movies List App lets users browse popular movies and search for titles by name, using live data from the TMDB API. It was built as a hands-on project while learning React, based on a Js Mastery tutorial, then modified and extended.
 
 ---
 
 ## ✨ Features
 
-- 🔎 **Movie Search** – Find movies by title
-- 🧩 **Reusable Components** – Modular React component architecture
-- 📱 **Responsive Design** – Works across different screen sizes
-- 🎨 **Modern UI** – Styled interface based on a Figma design
-- ⚡ **Fast Development Workflow** – Built with a modern React setup
+- 🔎 **Movie Search** – Find movies by title, with debounced input to avoid firing a request on every keystroke
+- 🏷️ **Genre Labels** – Each movie card resolves TMDB's genre IDs into a readable genre name
+- 🧩 **Reusable Components** – `Search` and `Card` are separate, prop-driven components
+- 📱 **Responsive Design** – Adapts across screen sizes
+- 🎨 **UI from Figma** – Interface implemented from a Figma design file
+- ⚠️ **Error Handling** – Surfaces a message when the fetch fails or returns no results
 
 ---
 
 ## 🛠️ Tech Stack
 
-- **JavaScript** (64.6%)
-- **CSS(TailWind)** (31.2%)
-- **HTML** (4.2%)
-- **React**
+- React + Vite
+- JavaScript
+- Tailwind CSS
+- TMDB API
+- CSS
 
 ---
 
-## 📂 Project Structure (Typical)
+## 📂 Project Structure
 
-```bash
-movies-list-app/
-├── public/              # Static files
-├── src/                 # React source code
-│   ├── components/      # Reusable UI components
-│   ├── pages/           # Page-level components (if used)
-│   ├── App.js           # Main app component
-│   ├── main.js / index.js
-│   └── styles/          # CSS files (if organized separately)
-├── package.json
-└── README.md
 ```
-
-> Note: Actual structure may vary slightly based on your implementation.
+movies-list-app/
+├── components/
+│   ├── Search.jsx
+│   └── Card.jsx
+├── public/
+│   ├── logo.png
+│   ├── hero-image.png
+│   ├── star.svg
+│   └── No-Poster.png
+├── src/
+│   ├── App.jsx
+│   └── index.css
+├── index.html
+├── package.json
+└── vite.config.js
+```
 
 ---
 
 ## 🚀 Getting Started
 
-Follow these steps to run the project locally.
-
 ### 1) Clone the repository
 
-```bash
+```
 git clone https://github.com/omar23py/movies-list-app.git
 cd movies-list-app
 ```
 
 ### 2) Install dependencies
 
-```bash
+```
 npm install
 ```
 
-### 3) Start the development server
+### 3) Set up environment variables
 
-```bash
+Create a `.env` file in the root:
+
+```
+VITE_TMDB_API_KEY=your_tmdb_api_key_here
+```
+
+Get a key from [TMDB](https://www.themoviedb.org/settings/api).
+
+### 4) Start the development server
+
+```
 npm run dev
 ```
 
-_or (depending on your setup):_
-
-```bash
-npm start
-```
-
-### 4) Open in browser
-
-Visit:
-
-```bash
-http://localhost:5173
-```
-
-_or:_
-
-```bash
-http://localhost:3000
-```
+Visit `http://localhost:5173`
 
 ---
 
-## ⚙️ Environment Variables (If Needed)
+## 🧠 What I Learned
 
-If your app uses a movie API (such as TMDB), create a `.env` file in the root and add your keys:
-
-```env
-VITE_API_KEY=your_api_key_here
-VITE_BASE_URL=your_base_url_here
-```
-
-> Use the variable names that match your project code.
-
----
-
-## 🧠 What I Learned / Purpose
-
-This project helped reinforce:
-
-- React component-based architecture
-- State and props management
-- Conditional rendering and list rendering
-- API data fetching and UI updates
-- Translating UI design into real implementation
+- Managing state with `useState` across multiple pieces of UI state
+- Handling side effects and API calls with `useEffect`
+- Debouncing search input with `useDebounce` to reduce unnecessary API requests
+- Passing data through props and structuring reusable components
+- Working with environment variables to keep API credentials out of source control
+- Fetching from a real external API and handling loading/error/empty states
+- Translating a Figma design into a working, responsive UI
 
 ---
 
-## 📸 UI/Design Reference
+## 🔧 What I Changed from the Base Tutorial
 
-Figma Design:  
-**https://www.figma.com/design/kdu6x1bqzyCMbzezudt6s2/Movie-App-w--React?node-id=89001-1614&t=3rrkcbPJY7uMaVcj-0**
+- Added a **genre ID → genre name mapping**, so each movie card shows a readable genre instead of just a raw rating and language
+- Fixed the "no results" check to match TMDB's actual response shape (`results.length === 0`) instead of a field the API doesn't return
+- Simplified the project by leaving out the tutorial's backend/analytics layer (search-count tracking, trending movies section) to keep the scope focused on core React concepts
 
+**Known gap:** no loading spinner yet — the UI doesn't show a loading state while a fetch is in flight. Planned as a next addition.
 
-## 📄 License
+---
 
-This project is for educational and portfolio purposes.
+## 📸 Design Reference
+
+Figma Design: [Movie App w/ React](https://www.figma.com/design/kdu6x1bqzyCMbzezudt6s2/Movie-App-w--React?node-id=89001-1614&t=3rrkcbPJY7uMaVcj-0)
 
 ---
 
 ## 🙌 Acknowledgments
 
-This project was applied from the **JavaScript Mastery React tutorial**.  
-Design reference provided via the Figma file linked above.
+Built while following the **JS Mastery React tutorial**, then modified and extended as a learning exercise. Design reference via the linked Figma file.
+
+## 📄 License
+
+This project is for educational and portfolio purposes.
