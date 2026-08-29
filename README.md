@@ -104,10 +104,6 @@ Visit `http://localhost:5173`
 
 - Added a **genre ID → genre name mapping**, so each movie card shows a readable genre instead of just a raw rating and language
 - Fixed the "no results" check to match TMDB's actual response shape (`results.length === 0`) instead of a field the API doesn't return
-- Simplified the project by leaving out the tutorial's backend/analytics layer (search-count tracking, trending movies section) to keep the scope focused on core React concepts
-
-**Known gap:** no loading spinner yet — the UI doesn't show a loading state while a fetch is in flight. Planned as a next addition.
-
 ---
 
 ## 📸 Design Reference
