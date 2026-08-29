@@ -31,7 +31,7 @@ This project is ideal for practicing React fundamentals, component structure, st
 ## 🛠️ Tech Stack
 
 - **JavaScript** (64.6%)
-- **CSS** (31.2%)
+- **CSS(TailWind)** (31.2%)
 - **HTML** (4.2%)
 - **React**
 
